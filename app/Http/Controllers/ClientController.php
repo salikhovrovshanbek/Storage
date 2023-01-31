@@ -69,7 +69,13 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $request->validate([
+
+        ]);
+
+        $client->update($request->all());
+
+        return redirect()->route('clients.index')->with('success','Client deleted successfully');
     }
 
     /**
@@ -80,6 +86,8 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+
+        return redirect()->route('clients.index')->with('success','Client deleted successfully');
     }
 }

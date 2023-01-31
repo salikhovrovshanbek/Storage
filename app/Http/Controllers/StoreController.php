@@ -9,17 +9,17 @@ class StoreController extends Controller
 {
     public function index()
     {
-        $users = Store::latest()->paginate(5);
-
-        return view('store.index',compact('store'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $posts=Store::query()->orderBy("created_at","DESC")->limit(3)->get();//or we can only Post::orderBy(....
+        return view('Welcome',[
+            "posts"=>$posts,
+        ]);
 
     }
 
 
     public function create()
     {
-        //
+        return view('store.create');
     }
 
     public function store(Request $request)
@@ -29,7 +29,7 @@ class StoreController extends Controller
 
     public function show(Store $store)
     {
-        //
+        return view('store.show');
     }
     public function edit(Store $store)
     {
@@ -38,11 +38,21 @@ class StoreController extends Controller
 
     public function update(Request $request, Store $store)
     {
-        //
+        $request->validate([
+
+        ]);
+
+        $store->update($request->all());
+
+        return redirect()->route('store.index')
+            ->with('success','Store updated successfully');
     }
 
     public function destroy(Store $store)
     {
-        //
+        $store->delete();
+
+        return redirect()->route('store.index')
+            ->with('success','Store deleted successfully');
     }
 }
