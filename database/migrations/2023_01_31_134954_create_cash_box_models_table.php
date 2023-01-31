@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cash_boxes', function (Blueprint $table) {
+        Schema::create('cashbbox', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('Total');
-
+            $table->foreignIdFor(\App\Models\ContractModel::class,'contract_id');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cash_boxes');
+        Schema::dropIfExists('cashbox');
     }
 };
