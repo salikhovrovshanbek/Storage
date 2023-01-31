@@ -12,6 +12,7 @@ class Product extends Model
     protected $fillable=[
         "name",
         "count",
+        "status",
         "store_id",
         "client_id"
     ];

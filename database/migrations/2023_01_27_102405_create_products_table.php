@@ -16,11 +16,19 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("count");
+            $table->integer("count");
+            $table->bigInteger('price');
+            $table->tinyInteger('status_for_store');//1-kirim; 2-chiqim; 3-vozvrat
+
             $table->index("store_id");
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
+
             $table->index("client_id");
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+
+//            $table->index("client_id");
+//            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
