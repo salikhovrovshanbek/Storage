@@ -14,7 +14,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $data['clients'] = Store::orderBy('id','desc')->paginate(5);
+        return view('clients.index', $data);
     }
 
     /**
@@ -24,7 +25,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('clients.create');
     }
 
     /**
@@ -57,7 +58,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('clients.edit');
     }
 
     /**

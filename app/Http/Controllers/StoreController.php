@@ -9,11 +9,12 @@ class StoreController extends Controller
 {
     public function index()
     {
-        $posts=Store::query()->orderBy("created_at","DESC")->limit(3)->get();//or we can only Post::orderBy(....
-        return view('Welcome',[
-            "posts"=>$posts,
-        ]);
-
+//        $posts=Store::query()->orderBy("created_at","DESC")->limit(3)->get();//or we can only Post::orderBy(....
+//        return view('Welcome',[
+//            "posts"=>$posts,
+//        ]);
+        $data['stores'] = Store::orderBy('id','desc')->paginate(5);
+        return view('stores.index', $data);
     }
 
 

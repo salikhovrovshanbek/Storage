@@ -14,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $data['products'] = Company::orderBy('id','desc')->paginate(5);
+        return view('products.index', $data);
     }
 
     /**
@@ -46,7 +47,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('product.show');
     }
 
     /**
