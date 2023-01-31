@@ -9,5 +9,15 @@ class Store extends Model
 {
     use HasFactory;
 
-    protected $guarded=[];
+    protected $fillable=[
+        "name",
+        "count",
+        "price",
+        "product_id",
+    ];
+
+    protected function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

@@ -17,6 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource("/products",\App\Http\Controllers\ProductController::class);
-Route::resource("/store",\App\Http\Controllers\StoreController::class);
-Route::resource("/client",\App\Http\Controllers\ClientController::class);
+Route::resource("products",\App\Http\Controllers\ProductController::class);
+Route::resource("store",\App\Http\Controllers\StoreController::class);
+Route::resource("client",\App\Http\Controllers\ClientController::class);

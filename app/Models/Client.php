@@ -9,5 +9,15 @@ class Client extends Model
 {
     use HasFactory;
 
-    protected $guarded=[];
+    protected $fillable=[
+        "name",
+        "number",
+        "location",
+        "product_id",
+    ];
+
+    protected function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

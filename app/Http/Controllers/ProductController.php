@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data['products'] = Company::orderBy('id','desc')->paginate(5);
+        $data['products'] = Product::orderBy('id','desc')->paginate(5);
         return view('products.index', $data);
     }
 
@@ -25,7 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -36,7 +36,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $company = Product::create([
+            "name" => $request["name"],
+        ]);
+        $company->save();
+
+        return redirect()->route('products.index')
+            ->with('success','Company has been created successfully.');
     }
 
     /**
@@ -47,7 +57,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('product.show');
+        return view('product.show',compact('product'));
     }
 
     /**
@@ -58,7 +68,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('product.edit',compact('product'));
     }
 
     /**

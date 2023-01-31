@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
-
+//\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View' returned
 class ClientController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $data['clients'] = Store::orderBy('id','desc')->paginate(5);
+        $data['clients'] = Client::orderBy('id','desc')->paginate(5);
         return view('clients.index', $data);
     }
 
@@ -36,7 +36,17 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $company = Client::create([
+            "name" => $request["name"],
+        ]);
+        $company->save();
+
+        return redirect()->route('clients.index')
+            ->with('success','Company has been created successfully.');
     }
 
     /**
@@ -47,7 +57,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        return view('clients.show',compact('client'));
     }
 
     /**
@@ -58,7 +68,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        return view('clients.edit');
+        return view('clients.edit',compact('client'));
     }
 
     /**

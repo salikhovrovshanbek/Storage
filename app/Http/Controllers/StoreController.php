@@ -25,16 +25,27 @@ class StoreController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $company = Store::create([
+            "name" => $request["name"],
+        ]);
+        $company->save();
+
+        return redirect()->route('stores.index')
+            ->with('success','Company has been created successfully.');
+
     }
 
     public function show(Store $store)
     {
-        return view('store.show');
+        return view('store.show',compact('store'));
     }
     public function edit(Store $store)
     {
-        //
+        return view('store.edit',compact('store'));
     }
 
     public function update(Request $request, Store $store)
