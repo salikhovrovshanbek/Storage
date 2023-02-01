@@ -10,4 +10,9 @@ class ClientsModel extends Model
     use HasFactory;
 
     protected $guarded=[];
+
+    public function contract()
+    {
+        return $this->hasMany(ContractModel::class)->orderBy('id');
+    }
 }

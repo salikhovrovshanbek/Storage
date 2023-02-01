@@ -10,4 +10,9 @@ class CashBoxModel extends Model
     use HasFactory;
 
     protected $guarded=[];
+
+    public function contract()
+    {
+        return $this->belongsTo(ContractModel::class);
+    }
 }

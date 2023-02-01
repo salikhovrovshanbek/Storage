@@ -10,4 +10,14 @@ class StoreModel extends Model
     use HasFactory;
 
     protected $guarded=[];
+
+    public function company()
+    {
+        return $this->belongsTo(CompanyModel::class);
+    }
+
+    public function product()
+    {
+        return $this->hasMany(ProductModel::class)->orderBy('id');
+    }
 }

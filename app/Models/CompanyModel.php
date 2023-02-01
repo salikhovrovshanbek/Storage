@@ -10,4 +10,13 @@ class CompanyModel extends Model
     use HasFactory;
 
     protected $guarded=[];
+
+    public function store()
+    {
+        return $this->hasMany(StoreModel::class)->orderBy('id');
+    }
+    public function contract()
+    {
+        return $this->hasMany(ContractModel::class)->orderBy('id');
+    }
 }

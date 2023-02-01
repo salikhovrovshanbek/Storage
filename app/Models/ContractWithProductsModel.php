@@ -10,4 +10,14 @@ class ContractWithProductsModel extends Model
     use HasFactory;
 
     protected $guarded=[];
+
+    public function product()
+    {
+        return $this->belongsTo(ProductModel::class);
+    }
+
+    public function contract()
+    {
+        return $this->belongsTo(ContractModel::class);
+    }
 }
